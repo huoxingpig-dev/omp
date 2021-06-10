@@ -1,4 +1,9 @@
 .idea/
-WebRoot/serve/
-WebRoot/gis3serveSource/node_modules/
+.out/
+.account-api/target/
+.account-svc/target/
+.common-lib/target/
+.cos-api/target/
+.cos-svc/target/
+.omp-gateway/target/
 
