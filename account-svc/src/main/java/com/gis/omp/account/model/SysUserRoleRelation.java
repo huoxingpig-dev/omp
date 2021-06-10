@@ -1,0 +1,23 @@
+package com.gis.omp.account.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Table;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name="sys_user_role")
+@EntityListeners(AuditingEntityListener.class)
+public class SysUserRoleRelation extends BaseModel{
+    private Long userId;
+    private Long roleId;
+}
