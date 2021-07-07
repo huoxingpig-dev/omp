@@ -24,6 +24,7 @@
         <module>cos-api</module>
         <module>cos-svc</module>
         <module>account-api</module>
+        <module>omp-monitor-hardware</module>
     </modules>
 
     <dependencyManagement>

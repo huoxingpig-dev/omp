@@ -2,6 +2,7 @@ package com.gis.omp.common.api;
 
 
 /**
+ * deprecated 暂时废弃
  * 通用返回对象(最外层对象)工具
  * @author Hongyu Jiang
  * @since Apr. 27 2020

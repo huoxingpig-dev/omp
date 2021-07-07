@@ -1,5 +1,6 @@
-package com.gis.omp.account.dto;
+package com.gis.omp.account.dto.response;
 
+import com.gis.omp.account.dto.modelDto.SysUserDto;
 import com.gis.omp.common.api.BaseResponse;
 import lombok.*;
 
@@ -9,6 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class GenericAccountResponse extends BaseResponse {
-    private AccountDto account;
+public class GenericUserResponse extends BaseResponse {
+    private SysUserDto data;
 }

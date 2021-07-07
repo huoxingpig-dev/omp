@@ -5,6 +5,9 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.util.StringUtils;
 
+/**
+ *  基于feign请求的权限拦截认证
+ */
 public class FeignRequestHeaderInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {

@@ -55,6 +55,9 @@ public enum ResultCode {
     MENU_EXIST_USEDCHILD(401, "包含已被占用子菜单，无法删除", "包含已被占用子菜单，无法删除"),
     MENU_USED(401, "菜单已被占用，禁止删除", "菜单已被占用，禁止删除"),
 
+    // authority
+    AUTHORITY_EXIST(23401, "该权限名已经存在", "该权限名已经存在"),
+
     STATUS_ERROR(401, "非法操作：状态有误", "非法操作：状态有误")
     ;
 

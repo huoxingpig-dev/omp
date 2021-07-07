@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 通用返回对象(最外层对象)
+ * 通用返回对象(最外层对象), 适合对WEB提供
  */
 @Data
 @NoArgsConstructor

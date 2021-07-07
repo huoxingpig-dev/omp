@@ -291,6 +291,11 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
+	public Set<String> getAuthorities(String userName) {
+		return null;
+	}
+
+	@Override
 	public List<SysUserRoleDto> findUserRoles(Long userId) {
 		return userRoleMapper.convertToDtoBatch(sysUserRoleDAO.findByUserId(userId));
 	}

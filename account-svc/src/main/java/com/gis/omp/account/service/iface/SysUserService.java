@@ -57,6 +57,13 @@ public interface SysUserService extends CurdService<SysUserDto> {
 	Set<String> getPermissions(String userName);
 
 	/**
+	 * 查找用户的权限标识集合
+	 * @param userName 用户名
+	 * @return 权限标识集合
+	 */
+	Set<String> getAuthorities(String userName);
+
+	/**
 	 * 通过用户编号查找用户的角色集合
 	 * @param userId 用户编号
 	 * @return 用户数据列表

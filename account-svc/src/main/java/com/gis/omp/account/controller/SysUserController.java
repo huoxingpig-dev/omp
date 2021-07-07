@@ -7,8 +7,11 @@ import com.gis.omp.account.dto.modelDto.SysUserDto;
 import com.gis.omp.account.dto.modelDto.SysUserRoleDto;
 import com.gis.omp.account.dto.paging.PageRequestVO;
 import com.gis.omp.account.dto.paging.PageVO;
+import com.gis.omp.account.dto.response.GenericUserResponse;
 import com.gis.omp.account.service.iface.SysUserService;
 import com.gis.omp.account.utils.StatusUtil;
+import com.gis.omp.common.api.BaseResponse;
+import com.gis.omp.common.api.BaseResponseUtil;
 import com.gis.omp.common.api.CommonResult;
 import com.gis.omp.common.api.CommonResultUtil;
 import io.swagger.annotations.Api;
@@ -42,17 +45,17 @@ public class SysUserController {
 	@ApiOperation(value = "创建用户", notes = "创建用户")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
-	public CommonResult create(@RequestBody CreateUserRequest record) {
+	public BaseResponse create(@RequestBody CreateUserRequest record) {
 		sysUserService.createUser(record);
-		return CommonResultUtil.success(0);
+		return BaseResponseUtil.success();
 	}
 
 	@ApiOperation(value = "更新用户", notes = "更新用户")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public CommonResult update(@RequestBody SysUserDto record) {
+	public BaseResponse update(@RequestBody SysUserDto record) {
 		sysUserService.updateUser(record);
-		return CommonResultUtil.success(0);
+		return BaseResponseUtil.success();
 	}
 
 
@@ -60,35 +63,37 @@ public class SysUserController {
 	@ApiOperation(value = "添加/更新用户", notes = "添加/更新用户")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public CommonResult save(@RequestBody SysUserDto record) {
+	public BaseResponse save(@RequestBody SysUserDto record) {
 		sysUserService.save(record);
-		return CommonResultUtil.success(0);
+		return BaseResponseUtil.success();
 	}
 
 	////@PreAuthorize("hasAuthority('sys:user:delete')")
 	@ApiOperation(value = "删除用户", notes = "删除用户")
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public CommonResult delete(@RequestBody List<SysUserDto> records) {
+	public BaseResponse delete(@RequestBody List<SysUserDto> records) {
 		sysUserService.delete(records);
-		return CommonResultUtil.success(0);
+		return BaseResponseUtil.success();
 	}
 
 	@ApiOperation(value = "根据姓名删除用户", notes = "根据姓名删除用户")
 	@RequestMapping(value = "/deleteByUserName", method = RequestMethod.DELETE)
 	@ResponseBody
-	public CommonResult delete(@RequestParam String userName) {
+	public BaseResponse delete(@RequestParam String userName) {
 		sysUserService.deleteUserByName(userName);
-		return CommonResultUtil.success(0);
+		return BaseResponseUtil.success();
 	}
 
 	//@PreAuthorize("hasAuthority('sys:user:view')")
 	@ApiOperation(value = "通过用户名查找用户", notes = "通过用户名查找用户")
 	@RequestMapping(value = "/findByUsername", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonResult<SysUserDto> findByUserName(@RequestParam String userName) {
+	public GenericUserResponse findByUserName(@RequestParam String userName) {
 		SysUserDto user = sysUserService.getByName(userName);
-		return CommonResultUtil.success(user);
+
+		GenericUserResponse genericUserResponse = new GenericUserResponse(user);
+		return genericUserResponse;
 	}
 
 	//@PreAuthorize("hasAuthority('sys:user:view')")
@@ -136,9 +141,11 @@ public class SysUserController {
 		notes = "根据id获取用户的详细信息")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonResult<SysUserDto> getItem(@PathVariable Long id) {
+	public GenericUserResponse getItem(@PathVariable Long id) {
 		SysUserDto user = sysUserService.getById(id);
-		return CommonResultUtil.success(user);
+
+		GenericUserResponse genericUserResponse = new GenericUserResponse(user);
+		return genericUserResponse;
 	}
 
 	@ApiOperation(value = "设置用户状态",
@@ -163,7 +170,7 @@ public class SysUserController {
 	}
 
 
-	public CommonResult updatePassword(@RequestParam String password,
+	public BaseResponse updatePassword(@RequestParam String password,
 									   @RequestParam String newPassword) {
 		// TODO.. 跟权限控制相关，参mango-demo user controller
 		return null;

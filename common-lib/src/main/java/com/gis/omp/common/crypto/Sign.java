@@ -11,9 +11,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *  jwt
+ */
 public class Sign {
     public static final String CLAIM_USER_ID = "userId";
     public static final String CLAIM_SUPPORT = "support";
+    public static final String CLAIM_AUTHORITY = "authority";
 
     private static Map<String, JWTVerifier> verifierMap = new HashMap<>();
     private static Map<String, Algorithm> algorithmMap = new HashMap<>();
@@ -33,7 +37,8 @@ public class Sign {
         return algorithm;
     }
 
-    public static String generateSessionToken(String userId, String signingToken, boolean support, long duration) {
+    public static String generateSessionToken(String userId, String signingToken, boolean support,
+                                              String[] roleList, long duration) {
         if ( StringUtils.isEmpty(signingToken) ) {
             throw new ServiceException("No signing token present");
         }
@@ -41,6 +46,7 @@ public class Sign {
         String token = JWT.create()
                 .withClaim(CLAIM_USER_ID, userId)
                 .withClaim(CLAIM_SUPPORT, support)
+                .withArrayClaim(CLAIM_AUTHORITY, roleList)
                 .withExpiresAt(new Date(System.currentTimeMillis() + duration))
                 .sign(algorithm);
 
